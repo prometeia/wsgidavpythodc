@@ -61,7 +61,7 @@ pipeline {
           steps {
             script {
               try {
-                doubleArchictecture('windows', 'base', true, PYVER, CONDAENV)
+                doubleArchictecture('windows', 'base', false, PYVER, CONDAENV)
               } catch (exc) {
                 echo 'Build failed on Windows Legacy Python'
                 currentBuild.result = 'UNSTABLE'
