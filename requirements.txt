@@ -1,0 +1,5 @@
+python
+six==1.13.*
+wsgidav==3.0.*
+repoze.lru==0.7.*
+requests==2.*
