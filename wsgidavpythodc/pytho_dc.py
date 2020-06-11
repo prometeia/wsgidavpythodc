@@ -133,7 +133,7 @@ class PythoDomainController(BaseDomainController):
                 roles.add("admin")
             if dirname(respath) == user_dir:
                 roles.add("editor")
-            is_superadmin = "admin" in roles and superadmin
+            is_superadmin = "admin" in roles and self.superadmin
 
             if not is_superadmin and user_dir not in (dirname(respath), respath):
                 raise DAVError(HTTP_FORBIDDEN, "Forbidden access to '{}'".format(respath))
@@ -141,7 +141,7 @@ class PythoDomainController(BaseDomainController):
                 raise DAVError(HTTP_FORBIDDEN, "Forbidden access to '{}'".format(tgpath))
             if not is_superadmin and method == 'MKCOL':
                 raise DAVError(HTTP_METHOD_NOT_ALLOWED,
-                               "Not allowed on resource '{}' method '{}'".format(path, method))
+                               "Not allowed on resource '{}' method '{}'".format(tgpath, method))
             environ["wsgidav.auth.roles"] = roles
             environ["wsgidav.auth.user_dir"] = user_dir
         return ok
